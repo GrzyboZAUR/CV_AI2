@@ -1,0 +1,11 @@
+{
+  "job_title":    { "Specjalista ds. administracji": "Administration Specialist" },
+  "location":     { "Wrocław": "Wrocław" },
+  "school":       { "Uniwersytet Wrocławski": "University of Wrocław" },
+  "field":        { "Informatyka": "Computer Science" },
+  "degree":       { "Magister": "Master's degree" },
+  "certificates": { "Kurs SQL od podstaw – Udemy (07.2025)": "SQL Fundamentals – Udemy (07.2025)" },
+  "courses":      { "Bezpieczeństwo w sieci – PFR (11.2025)": "Online Safety – PFR (11.2025)" },
+  "details":      { "Statystyka": "Statistics" },
+  "projects":     { "Mój projekt": "Short English description of the project." }
+}
