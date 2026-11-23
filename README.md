@@ -63,7 +63,9 @@ Nie wystawiaj Ollamy do internetu bez uwierzytelniania (do dostępu z zewnątrz 
 
 Zasada: **baza ma zawierać tylko prawdziwe fakty o Tobie.** Im więcej konkretnych punktów
 (narzędzia, metody, przedmioty na studiach), tym lepiej dopasowanie do słów kluczowych z ofert.
-Pełny przykład: `examples/Jan Kowalski - baza zatrudnienia.md`.
+Angielskie CV: teksty stałe (nazwy stanowisk, uczelni, certyfikatów, opisy projektów) tłumaczysz sam w pliku
+`bazy/<Imię> - tlumaczenia EN.json` (wzór: `examples/tlumaczenia EN - przyklad.json`). Czego brakuje,
+zostaje po polsku, a skrypt Cię o tym ostrzeże.
 
 ## Użycie z terminala
 
@@ -78,30 +80,30 @@ Przydatne opcje: `--jezyk en`, `--model nazwa`, `--oferta plik.txt`, `--zdjecie 
 Wyniki: `pdf/<Imię>/` (PDF), `wyniki/<Imię>/` (JSON), `logi/<Imię>/<firma_stanowisko>/` (raport braków, słów kluczowych, logi).
 Raport (`raport.txt`) pokazuje, których wymagań z oferty nie ma w bazie, a które słowa kluczowe weszły do CV.
 
-## Bot Telegram - w trakcie budowy
+## Bot Telegram (prosty, opcjonalny)
 
 1. Utwórz bota w @BotFather i skopiuj token. Swoje ID sprawdzisz np. w @userinfobot.
 2. W `.env` ustaw `TELEGRAM_TOKEN` i `TELEGRAM_ALLOWED_USER_ID`.
-   Kolejne osoby: `TELEGRAM_USERS=222:Anna,333:Marek` (każda widzi tylko swoją bazę).
-3. Uruchom `python bot.py`, w Telegramie wpisz `/cv`, podaj firmę, stanowisko i wklej ofertę.
-   Bot najpierw pokaże analizę, a po Twoim potwierdzeniu wygeneruje i odeśle PDF.
+3. Uruchom `python bot.py`, w Telegramie wpisz `/cv`, wybierz osobę (jeśli masz kilka baz), podaj firmę
+   i stanowisko, wklej ofertę. Bot najpierw wyśle analizę, a po Twoim `generuj` wygeneruje i odeśle PDF.
 
-Uwaga o prywatności: model liczy lokalnie, ale treść rozmowy z botem (oferta, gotowy PDF) przechodzi
-przez serwery Telegrama. Bot odpowiada tylko użytkownikom z listy ID.
+Bot odpowiada tylko jednemu użytkownikowi (Twojemu ID) i widzi wszystkie bazy z folderu `bazy/`.
+Model liczy lokalnie, ale treść rozmowy z botem (oferta, gotowy PDF) przechodzi przez serwery Telegrama.
 
 ## Konfiguracja (`.env`)
 
 Zobacz `.env.example`. Najważniejsze: `OLLAMA_URL`, `MODEL`, `TELEGRAM_TOKEN`, `TELEGRAM_ALLOWED_USER_ID`,
-`TELEGRAM_USERS`, `CV_DEFAULT_JEZYK`, `CV_TIMEOUT_S`, `EMB_WLACZONE`.
+`CV_DEFAULT_JEZYK`, `EMB_WLACZONE`.
 
 ## Struktura repozytorium
 
 ```
 generuj_json_z_oferty.py   główny skrypt (analiza, dopasowanie, generowanie JSON)
 generuj_pdf.py             JSON -> PDF (1 strona A4)
-bot.py                     bot Telegram
+embeddingi.py              opcjonalne dopasowanie po znaczeniu (bge-m3)
+bot.py                     prosty bot Telegram
 fonts/                     czcionka Carlito (licencja OFL)
-examples/                  szablon bazy, przykładowa baza i oferta
+examples/                  szablon bazy, przykład pliku tłumaczeń EN
 bazy/  logi/  pdf/  wyniki/   tworzone lokalnie, w .gitignore (Twoje dane)
 ```
 
@@ -114,4 +116,4 @@ bazy/  logi/  pdf/  wyniki/   tworzone lokalnie, w .gitignore (Twoje dane)
 
 ## Licencja
 
-Kod:  Apache 2.0. (plik `LICENSE`). Czcionka Carlito: SIL OFL. Model Bielik ma własną licencję, sprawdź ją na stronie SpeakLeash.
+Kod: Apache 2.0 (plik `LICENSE`). Czcionka Carlito: SIL OFL. Model Bielik ma własną licencję, sprawdź ją na stronie SpeakLeash.
