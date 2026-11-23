@@ -1,3 +1,25 @@
+# Dane osobowe i wyniki (NIGDY do repo)
+/bazy/
+/logi/
+/pdf/
+/wyniki/
+oferta.txt
+cv_dane.json
+cv_danePL.json
+zestaw_*.csv
+zestaw_*.meta.json
+*.pdf
+.env
+
+# Edytory i system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.tmp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
